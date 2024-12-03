@@ -6,6 +6,9 @@ const { postRouter } = require("../server/routes/postRouter");
 const { commentRouter } = require("../server/routes/commentRouter");
 const { likeRouter } = require("../server/routes/likeRouter");
 
+const app = express();
+const cors = require("cors");
+app.use(cors());
 dotenv.config();
 const connectDataBase = async () => {
   const res = await mongoose.connect(process.env.MONGODB_URI);
@@ -13,7 +16,6 @@ const connectDataBase = async () => {
 };
 connectDataBase();
 
-const app = express();
 app.use(express.json());
 app.use("/user", userRouter);
 app.use("/post", postRouter);

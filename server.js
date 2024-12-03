@@ -1,15 +1,15 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const { userRouter } = require("./routes/userRouter");
 const { postRouter } = require("./routes/postRouter");
 const { commentRouter } = require("./routes/commentRouter");
 const { likeRouter } = require("./routes/likeRouter");
+dotenv.config();
 
 const app = express();
-const cors = require("cors");
 app.use(cors());
-dotenv.config();
 const connectDataBase = async () => {
   const res = await mongoose.connect(process.env.MONGODB_URI);
   if (res) console.log("db connected");

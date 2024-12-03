@@ -17,9 +17,9 @@ const connectDataBase = async () => {
 connectDataBase();
 
 app.use(express.json());
-app.use("/user", userRouter);
-app.use("/post", postRouter);
-app.use("/comment", commentRouter);
-app.use("/like", likeRouter);
+app.use(userRouter);
+app.use(postRouter);
+app.use(commentRouter);
+app.use(likeRouter);
 const PORT = 8080;
 app.listen(PORT, console.log(`Your server is running in ${PORT}`));

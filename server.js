@@ -1,10 +1,10 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const { userRouter } = require("../server/routes/userRouter");
-const { postRouter } = require("../server/routes/postRouter");
-const { commentRouter } = require("../server/routes/commentRouter");
-const { likeRouter } = require("../server/routes/likeRouter");
+const { userRouter } = require("./routes/userRouter");
+const { postRouter } = require("./routes/postRouter");
+const { commentRouter } = require("./routes/commentRouter");
+const { likeRouter } = require("./routes/likeRouter");
 
 const app = express();
 const cors = require("cors");

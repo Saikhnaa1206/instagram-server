@@ -5,5 +5,5 @@ const {
 } = require("../controllers/comment/getCommentOfOnePost");
 const commentRouter = express();
 commentRouter.post("/createComment", createComment);
-commentRouter.get("/getCommentOfOnePost", getCommentOfOnePost);
+commentRouter.get(`/getCommentOfOnePost/${id}`, getCommentOfOnePost);
 module.exports = { commentRouter };

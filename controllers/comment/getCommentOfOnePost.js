@@ -1,7 +1,7 @@
 const { commentModel } = require("../../models/commentSchema");
 
 const getCommentOfOnePost = async (req, res) => {
-  const { id } = req.query;
+  const { id } = req.params;
   const comments = await commentModel.find({ postId: id });
   res.send(comments);
 };

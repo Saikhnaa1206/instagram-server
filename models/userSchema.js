@@ -4,7 +4,7 @@ const userSchema = new Schema(
   {
     username: { type: String, required: true },
     password: { type: String, required: true },
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     profileImage: { type: String },
     bio: { type: String },
     posts: [{ type: mongoose.Types.ObjectId, ref: "Post" }],

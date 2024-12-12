@@ -2,8 +2,12 @@ const jwt = require("jsonwebtoken");
 const authToken = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader.split(" ")[1];
-  if (!token) resizeBy.json({ message: "no token" });
+  if (!token) res.json({ message: "no token" });
   const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-  console.log(decodedToken);
+  if (decodedToken) {
+    next();
+  } else {
+    res.json({ message: "invalid token" });
+  }
 };
 module.exports = { authToken };

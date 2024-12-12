@@ -1,27 +1,31 @@
 const { postModel } = require("../../models/postSchema");
 const posts = async (req, res) => {
-  const post = await postModel
-    .find()
-    .populate({
-      path: "comments",
-      select: "comment userId postId ",
-      populate: {
+  try {
+    const post = await postModel
+      .find()
+      .populate({
+        path: "comments",
+        select: "comment userId postId ",
+        populate: {
+          path: "userId",
+          select: "username profileImage",
+        },
+      })
+      .populate({
+        path: "likes",
+        populate: {
+          path: "userId",
+          select: "username profileImage",
+        },
+      })
+      .populate({
         path: "userId",
         select: "username profileImage",
-      },
-    })
-    .populate({
-      path: "likes",
-      populate: {
-        path: "userId",
-        select: "username profileImage",
-      },
-    })
-    .populate({
-      path: "userId",
-      select: "username profileImage",
-    });
+      });
 
-  res.send(post);
+    res.send(post);
+  } catch (err) {
+    console.log(err);
+  }
 };
 module.exports = { posts };

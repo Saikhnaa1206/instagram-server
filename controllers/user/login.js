@@ -4,10 +4,8 @@ const jwt = require("jsonwebtoken");
 const login = async (req, res) => {
   const { email, password, username } = req.body;
   try {
-    const user = await userModel.findOne(
-      { email: email },
-      { username: username }
-    );
+    const user = await userModel.findOne({ email: email, username: username });
+    console.log(user);
     const hashedPassword = user.password;
     const isUser = bcrypt.compareSync(password, hashedPassword);
     if (isUser) {
@@ -19,7 +17,7 @@ const login = async (req, res) => {
         process.env.JWT_SECRET,
         { expiresIn: "24h" }
       );
-      res.send(token);
+      res.json(token);
     } else {
       res.send("wrong password or email");
     }

@@ -16,7 +16,10 @@ const login = async (req, res) => {
         process.env.JWT_SECRET,
         { expiresIn: "24h" }
       );
-      res.json({ token });
+      res.json({
+        user: isUser,
+        token,
+      });
     } else {
       res.send("wrong password or email");
     }

@@ -6,18 +6,17 @@ const login = async (req, res) => {
   try {
     const user = await userModel.findOne({ email: email, username: username });
     const hashedPassword = user.password;
-    const isUser = bcrypt.compareSync(password, hashedPassword);
+    const isUser = await bcrypt.compareSync(password, hashedPassword);
     if (isUser) {
       const token = jwt.sign(
         {
-          userId: isUser._id,
-          username: isUser.username,
+          userId: user._id,
+          username: user.username,
         },
         process.env.JWT_SECRET,
         { expiresIn: "24h" }
       );
       res.json({
-        user: isUser,
         token,
       });
     } else {

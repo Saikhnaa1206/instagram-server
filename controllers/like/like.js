@@ -1,12 +1,10 @@
-const { likeModel } = require("../../models/likeSchema");
 const { postModel } = require("../../models/postSchema");
 const likeToPost = async (req, res) => {
   try {
-    const body = req.body;
-    const like = await likeModel.create(body);
-    const result = await postModel.findByIdAndUpdate(body.postId, {
+    const { postId, userId } = req.body;
+    const result = await postModel.findByIdAndUpdate(postId, {
       $addToSet: {
-        likes: like._id,
+        likes: userId,
       },
     });
     res.send(result);

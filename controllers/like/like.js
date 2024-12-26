@@ -1,5 +1,6 @@
 const { likeModel } = require("../../models/likeSchema");
 const { postModel } = require("../../models/postSchema");
+
 const likeToPost = async (req, res) => {
   try {
     const { postId, userId } = req.body;

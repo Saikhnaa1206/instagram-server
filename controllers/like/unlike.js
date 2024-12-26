@@ -8,7 +8,7 @@ const unlikeToPost = async (req, res) => {
     const updatedPost = await postModel.findByIdAndUpdate(
       postId,
       {
-        $pull: { likes: userId },
+        $pull: { likes: unlikedUser._id },
       },
       { new: true }
     );

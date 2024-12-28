@@ -4,7 +4,7 @@ const getLikedUserOfOnePost = async (req, res) => {
   const { id } = req.params;
   const likes = await postModel
     .findById(id)
-    .populate("userId", "username profileImage");
+    .populate("likes", "username profileImage");
   res.send(likes);
 };
 module.exports = { getLikedUserOfOnePost };

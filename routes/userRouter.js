@@ -5,11 +5,27 @@ const { follow } = require("../controllers/user/follow");
 const { unfollow } = require("../controllers/user/unfollow");
 const { getAllOfOneUser } = require("../controllers/user/getAllOfOneUser");
 const { authToken } = require("../controllers/middleware/authorization");
+const {
+  getFollowedUsersOfOneUser,
+} = require("../controllers/user/getFollowedUsersOfOneUser");
+const {
+  getFollowingUsersOfOneUser,
+} = require("../controllers/user/getFollowingUsersOfOneUser");
 const userRouter = express();
 userRouter.post("/signup", signup);
 userRouter.post("/login", login);
 userRouter.post("/follow", authToken, follow);
 userRouter.post("/unfollow", authToken, unfollow);
+userRouter.get(
+  "/getFollowedUsersOfOneUser/:userId",
+  authToken,
+  getFollowedUsersOfOneUser
+);
+userRouter.get(
+  "/getFollowingUsersOfOneUser/:userId",
+  authToken,
+  getFollowingUsersOfOneUser
+);
 userRouter.get("/getAllOfOneUser/:userId", authToken, getAllOfOneUser);
 const { userModel } = require("../models/userSchema");
 userRouter.get("/users", async (req, res) => {
@@ -20,4 +36,5 @@ userRouter.get("/users", async (req, res) => {
   });
   res.send(post);
 });
+
 module.exports = { userRouter };

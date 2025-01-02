@@ -6,7 +6,6 @@ const getFollowingUsersOfOneUser = async (req, res) => {
       path: "following",
       select: "profileImage username ",
     });
-    console.log(followingUsers);
     res.send(followingUsers.following);
   } catch (error) {
     res.send(error);

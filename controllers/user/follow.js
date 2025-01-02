@@ -15,7 +15,6 @@ const follow = async (req, res) => {
       },
       new: true,
     });
-    console.log(follower);
     res.send(following);
   } catch (error) {
     res.send(error);

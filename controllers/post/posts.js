@@ -5,7 +5,6 @@ const posts = async (req, res) => {
       path: "userId",
       select: "username profileImage",
     });
-
     res.send(post);
   } catch (err) {
     console.log(err);

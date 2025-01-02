@@ -17,7 +17,6 @@ const unfollow = async (req, res) => {
       },
       new: true,
     });
-    console.log(unfollower);
     res.send(unfollowing);
   } catch (error) {
     res.send(error);
